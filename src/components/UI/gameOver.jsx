@@ -29,7 +29,7 @@ const GameOver = ({
               <Button
                 handleclick={handleclick}
                 text={"Try Again"}
-                variant={varinat}
+                variant={page}
               />
             </>
           )}
