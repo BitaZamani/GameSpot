@@ -1,0 +1,100 @@
+.card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.448);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  width: 100;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+}
+
+.border {
+  position: absolute;
+  background: #843d00;
+  transition: all 0.25s ease-in-out;
+  border: none;
+}
+
+/* Top */
+.border.top {
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  transition-delay: 0.75s;
+}
+.card:hover .border.top {
+  width: 100%;
+}
+
+/* Right */
+.border.right {
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 0;
+  transition-delay: 0s;
+}
+.card:hover .border.right {
+  height: 100%;
+}
+
+/* Bottom */
+.border.bottom {
+  bottom: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  transition-delay: 0.25s;
+}
+.card:hover .border.bottom {
+  width: 100%;
+}
+
+/* Left */
+.border.left {
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  height: 0;
+  transition-delay: 0.5s;
+}
+.card:hover .border.left {
+  height: 100%;
+}
+.icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 100px;
+  width: 100px;
+  z-index: -1;
+  transition: linear 0.25s;
+}
+.card:hover .icon {
+  transform: scale(115%);
+  top: -10px;
+  right: -10px;
+  z-index: 0;
+}
+.card-content {
+  font-size: 30px;
+  color: #ffa95d;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  height: 100%;
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  z-index: 1;
+  transition: linear 0.25s;
+}
+.card:hover .card-content {
+  transform: scale(110%);
+  padding-left: 50px;
+  color: #843d00;
+}
