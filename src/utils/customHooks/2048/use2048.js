@@ -1,9 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import { modifyBoard } from "../../utils/2048/2048";
-import { getData, setData } from "../../utils/helpers/manageLocalStorage";
-
-import { createBoard } from "../../utils/helpers/board";
-
+import { createBoard } from "../../helpers/board";
+import { getData, setData } from "../../helpers/manageLocalStorage";
+import { modifyBoard } from "../../helpers/2048/2048";
 export function use2048() {
   const [topTile, setTopTile] = useState(() => getData("2048TopTile") || 0);
   const [topScore, setTopScore] = useState(() => getData("2048TopScore") || 0);

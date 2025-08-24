@@ -1,5 +1,5 @@
 import React from "react";
-import { calColor } from "../../utils/2048/2048";
+import { calColor } from "../../utils/helpers/2048/2048";
 
 const Tile = React.memo(({ number }) => {
   return (

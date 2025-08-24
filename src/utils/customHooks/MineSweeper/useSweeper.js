@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { createBoard } from "../../utils/helpers/board";
+import { useCallback, useEffect, useState } from "react";
+import { createBoard } from "../../helpers/board";
+import { useTimer } from "../useTimer";
 import {
   findBombs,
   getLevelSettings,
-} from "../../utils/minesweeper/mineSweeper";
-import { useTimer } from "../useTimer";
+} from "../../helpers/minesweeper/mineSweeper";
 
 export function useSweeper(initiLevel = "easy") {
   const [gameOver, setGameOver] = useState("ongoing");
@@ -18,12 +18,9 @@ export function useSweeper(initiLevel = "easy") {
 
   const { seconds, setSeconds } = useTimer(gameOver !== "ongoing");
 
-  const board = useMemo(
-    () => createBoard(row, col, -1, mines),
-    [row, col, mines]
-  );
+  const [board, setBoard] = useState([]);
   const createSweeperBoard = useCallback(
-    (rowCount, colCount) => {
+    (rowCount, colCount, minesCount) => {
       setSeconds(0);
       setFlaggedCells(
         new Array(rowCount)
@@ -35,7 +32,7 @@ export function useSweeper(initiLevel = "easy") {
           .fill(null)
           .map(() => new Array(colCount).fill(false))
       );
-
+      setBoard(createBoard(rowCount, colCount, -1, minesCount));
       setGameOver("ongoing");
     },
     [setSeconds]
@@ -49,7 +46,8 @@ export function useSweeper(initiLevel = "easy") {
     setMines(mines);
     setRemainedMines(mines);
 
-    createSweeperBoard(row, col);
+    // build a new board whenever level changes
+    createSweeperBoard(row, col, mines);
   }, [initiLevel, createSweeperBoard]);
 
   //finding numbers
@@ -58,6 +56,7 @@ export function useSweeper(initiLevel = "easy") {
     setRevealedCells(newRevealed);
   };
 
+  //revealing cells
   const click = (number, i, j) => {
     if (flaggedCells[i][j] === true) return;
     if (number === -1) {
@@ -114,7 +113,7 @@ export function useSweeper(initiLevel = "easy") {
 
   //restart
   const restart = () => {
-    createSweeperBoard(row, col);
+    createSweeperBoard(row, col, mines);
     setRemainedMines(mines);
     setSeconds(0);
   };

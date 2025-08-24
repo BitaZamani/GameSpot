@@ -1,9 +1,13 @@
 import React from "react";
-import { useLongPress } from "../../customHooks/useLongPress";
-import { calTextColor } from "../../utils/minesweeper/mineSweeper";
-
+import { useLongPress } from "../../utils/customHooks/useLongPress";
+import { calTextColor } from "../../utils/helpers/minesweeper/mineSweeper";
+const level_styles = {
+  easy: "size-7",
+  medium: "size-[22px] sm:size-7",
+  hard: "size-[22px] sm:size-7",
+};
 const Cell = React.memo(
-  ({ number, revealedCells, click, i, j, flaggedCells, flagClick }) => {
+  ({ number, revealedCells, click, i, j, flaggedCells, flagClick, level }) => {
     const handlers = useLongPress(
       () => click(number, i, j),
       () => flagClick(i, j)
@@ -72,7 +76,7 @@ const Cell = React.memo(
     );
     return (
       <div
-        className={`size-7 flex text-1xl font-bold text-black m-0 p-0 no-select`}
+        className={`flex text-xl font-bold text-black m-0 p-0 no-select ${level_styles[level]}`}
         {...handlers}
         onContextMenu={(e) => {
           e.preventDefault();
@@ -84,14 +88,20 @@ const Cell = React.memo(
       >
         {!flaggedCells ? (
           revealedCells ? (
-            <span className="border-2 border-[#232b33] size-7 text-center bg-[#464e56] box-border">
+            <span
+              className={`border-2 border-[#232b33] text-center bg-[#464e56] box-border ${level_styles[level]}`}
+            >
               {number === -1 ? bomb : number === 0 ? "" : number}
             </span>
           ) : (
-            <span className="border-4 size-7 border-r-[#1e262e] border-b-[#1e262e] border-t-[#6a727b] border-l-[#6a727b] bg-[#4c545c] box-border"></span>
+            <span
+              className={`border-4 border-r-[#1e262e] border-b-[#1e262e] border-t-[#6a727b] border-l-[#6a727b] bg-[#4c545c] box-border ${level_styles[level]}`}
+            ></span>
           )
         ) : (
-          <span className="border-4 size-7 border-r-[#1e262e] border-b-[#1e262e] border-t-[#6a727b] border-l-[#6a727b] bg-[#4c545c] box-border flex justify-center items-center">
+          <span
+            className={`border-4 border-r-[#1e262e] border-b-[#1e262e] border-t-[#6a727b] border-l-[#6a727b] bg-[#4c545c] box-border flex justify-center items-center ${level_styles[level]}`}
+          >
             {flag}
           </span>
         )}

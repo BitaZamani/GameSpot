@@ -1,7 +1,8 @@
 import React, { useMemo } from "react";
 import Tile from "./tile";
 import GameOver from "../../components/UI/gameOver";
-import { use2048 } from "../../customHooks/2048/use2048";
+
+import { use2048 } from "../../utils/customHooks/2048/use2048";
 import B048Info from "./B048Info";
 const B048Board = () => {
   const {

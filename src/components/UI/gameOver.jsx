@@ -10,7 +10,7 @@ const GameOver = ({
 }) => {
   const gameOver_variant = {
     light: "bg-white/20",
-    dark: "bg-black/20",
+    dark: "bg-gray-800/40",
   };
   return (
     <>
@@ -22,7 +22,7 @@ const GameOver = ({
         >
           {gameOver === "lose" && (
             <>
-              <span className="sm:text-5xl text-4xl opacity-100 font-semibold text-center ">
+              <span className="sm:text-5xl text-4xl opacity-100 font-semibold text-center py-4">
                 Game Over!
               </span>
 
@@ -35,7 +35,7 @@ const GameOver = ({
           )}
           {gameOver === "win" && (
             <>
-              <span className="sm:text-5xl text-4xl opacity-100 font-semibold my-4">
+              <span className="sm:text-5xl text-4xl opacity-100 font-semibold py-4">
                 You Won!
               </span>
 
